@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
 
     public void createUsersTable() {
 
-        try (Connection conn = new Util().getConnect();
+        try (Connection conn = Util.getConnect();
              Statement statement = conn.createStatement()) {
 
             DatabaseMetaData md = conn.getMetaData();
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
     public void dropUsersTable() {
 
-        try (Connection conn = new Util().getConnect();
+        try (Connection conn = Util.getConnect();
              Statement statement = conn.createStatement()) {
 
             DatabaseMetaData md = conn.getMetaData();
@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
 
     public void saveUser(String name, String lastName, byte age) {
 
-        try (Connection conn = new Util().getConnect()) {
+        try (Connection conn = Util.getConnect()) {
 
             String sql = "INSERT INTO tableusers(name_db, lastName_db, age_db) VALUES (?, ?, ?)";
 
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void removeUserById(long id) {
-        try (Connection conn = new Util().getConnect()) {
+        try (Connection conn = Util.getConnect()) {
 
             String sql = "DELETE FROM " + tableName + " WHERE id_db = ? ";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
 
-        try (Connection conn = new Util().getConnect();
+        try (Connection conn = Util.getConnect();
              Statement statement = conn.createStatement()) {
 
             String sql = "SELECT id_db, name_db, lastName_db, age_db FROM " + tableName;
@@ -121,7 +121,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void cleanUsersTable() {
-        try (Connection conn = new Util().getConnect();
+        try (Connection conn = Util.getConnect();
              Statement statement = conn.createStatement()) {
 
             String sql = "TRUNCATE TABLE " + tableName;
