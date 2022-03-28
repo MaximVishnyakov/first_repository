@@ -1,6 +1,7 @@
 package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.service.UserServiceImpl;
 import jm.task.core.jdbc.util.Util;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,6 +9,8 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
+    private final UserServiceImpl tableSQL = new UserServiceImpl();
+
     public UserDaoHibernateImpl() {
 
     }
@@ -15,12 +18,12 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void createUsersTable() {
-
+        tableSQL.createUsersTable();
     }
 
     @Override
     public void dropUsersTable() {
-
+        tableSQL.dropUsersTable();
     }
 
     @Override

@@ -26,6 +26,7 @@ public class Util {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, user, password);
+            conn.setAutoCommit(false);
         } catch (SQLException e) {
             System.out.println("not connect!");
         }
